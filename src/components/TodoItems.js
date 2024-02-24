@@ -1,17 +1,35 @@
 /* eslint-disable react/prop-types */
-import { HiTrash, HiPencilAlt } from "react-icons/hi";
+import { HiTrash, HiPencilAlt, HiCheck } from "react-icons/hi";
 
-const TodoItems = ({ todo, index, setEdit, removeTodo }) => {
+const TodoItems = ({ todo, index, setEdit, toggleComplete, removeTodo }) => {
   return (
     <li className="flex items-center justify-between bg-white p-3 rounded shadow-md mb-3">
-      <span className="text-lg">{todo.todo}</span>
+      <span
+        className={`${
+          todo.completed ? "completed text-lg line-through" : "text-lg"
+        }`}
+      >
+        {todo.todo}
+      </span>
       <div>
-        <button
-          onClick={() => setEdit(index)}
-          className="mr-2 btn bg-yellow-500 text-white"
-        >
-          <HiPencilAlt />
-        </button>
+        {!todo.completed && (
+          <button
+            onClick={() => toggleComplete(todo.id)}
+            className="mr-2 btn bg-green-500 text-white"
+          >
+            <HiCheck />
+          </button>
+        )}
+
+        {!todo.completed && (
+          <button
+            onClick={() => setEdit(index)}
+            className="mr-2 btn bg-yellow-500 text-white"
+          >
+            <HiPencilAlt />
+          </button>
+        )}
+
         <button
           onClick={() => removeTodo(todo.id)}
           className="btn bg-red-500 text-white"

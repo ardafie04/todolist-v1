@@ -7,10 +7,10 @@ function App() {
   const [input, setInput] = useState("");
   const [editIndex, setEditIndex] = useState(-1);
 
-  const addTodo = async () => {
+  const addTodo = () => {
     try {
       if (input.trim() !== "") {
-        setTodos([...todos, { id: new Date(), todo: input }]);
+        setTodos([...todos, { id: new Date(), completed: false, todo: input }]);
         setInput("");
       }
     } catch (error) {
@@ -18,12 +18,25 @@ function App() {
     }
   };
 
+  const toggleComplete = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id
+          ? {
+              ...todo,
+              completed: !todo.completed,
+            }
+          : todo
+      )
+    );
+  };
+
   const setEdit = (index) => {
     setInput(todos[index].todo);
     setEditIndex(index);
   };
 
-  const updateTodo = async () => {
+  const updateTodo = () => {
     try {
       if (input.trim() !== "") {
         const updatedTodos = [...todos];
@@ -37,7 +50,7 @@ function App() {
     }
   };
 
-  const removeTodo = async (id) => {
+  const removeTodo = (id) => {
     let filteredTodos = todos.filter((todo) => todo.id !== id);
     setTodos(filteredTodos);
   };
@@ -56,7 +69,12 @@ function App() {
       </div>
 
       {todos.length > 0 && (
-        <TodoList todos={todos} setEdit={setEdit} removeTodo={removeTodo} />
+        <TodoList
+          todos={todos}
+          toggleComplete={toggleComplete}
+          setEdit={setEdit}
+          removeTodo={removeTodo}
+        />
       )}
     </div>
   );
