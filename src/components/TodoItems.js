@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { HiTrash, HiPencilAlt, HiCheck } from "react-icons/hi";
+import { HiTrash, HiPencilAlt, HiCheck, HiX } from "react-icons/hi";
 
 const TodoItems = ({ todo, index, setEdit, toggleComplete, removeTodo }) => {
   return (
@@ -22,6 +22,15 @@ const TodoItems = ({ todo, index, setEdit, toggleComplete, removeTodo }) => {
             className="btn bg-green-500 text-white mr-2"
           >
             <HiCheck />
+          </button>
+        )}
+
+        {todo.completed && (
+          <button
+            onClick={() => toggleComplete(todo.id)}
+            className="btn bg-orange-500 text-white mr-2"
+          >
+            <HiX />
           </button>
         )}
 
