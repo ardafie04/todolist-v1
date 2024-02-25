@@ -57,7 +57,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col gap-4 items-center justify-center p-4">
-      <div className="bg-gray-100 rounded shadow-md w-full max-w-lg p-6">
+      <div className="bg-gray-100 rounded shadow-md w-full max-w-xl p-6">
         <div className="text-center font-bold text-2xl mb-4">Todo List App</div>
         <TodoForm
           input={input}

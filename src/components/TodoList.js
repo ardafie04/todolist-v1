@@ -3,7 +3,7 @@ import TodoItems from "./TodoItems";
 
 const TodoList = ({ todos, setEdit, toggleComplete, removeTodo }) => {
   return (
-    <div className="bg-gray-100 rounded shadow-md w-full mb-2 max-w-lg p-6">
+    <div className="bg-gray-100 rounded shadow-md w-full mb-2 max-w-xl p-6">
       <ul>
         {todos.map((todo, index) => (
           <TodoItems
